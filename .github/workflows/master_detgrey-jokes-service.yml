@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy container app to Azure Web App - jokes-service
+name: Build and deploy container app to Azure Web App - detgrey-jokes-service
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_023ee692873c4dd8b63afb22f573257e }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_9ad4d8976fa34f2bb728ece440bc8dce }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_d4cd56315bd4464fba1d861d1695d465 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_fdbf6ca6679a44e7af7fc541f6093ccc }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_023ee692873c4dd8b63afb22f573257e }}/joke-service:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_d4cd56315bd4464fba1d861d1695d465 }}/jokes-service:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'jokes-service'
+        app-name: 'detgrey-jokes-service'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9120842f0ce64cdb86994d4ce0f44f58 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_023ee692873c4dd8b63afb22f573257e }}/joke-service:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_884e5ea1209445eb8b5abc0fe8790c2f }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_d4cd56315bd4464fba1d861d1695d465 }}/jokes-service:${{ github.sha }}'
