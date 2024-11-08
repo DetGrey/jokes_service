@@ -25,13 +25,7 @@ jobs:
         registry: https://index.docker.io/v1/
         username: ${{ secrets.AzureAppService_ContainerUsername_2ef4622b77294f3b8727f34006634f5a }}
         password: ${{ secrets.AzureAppService_ContainerPassword_36e63a56f7de46908d60b6fed98d15a3 }}
-
-    - name: Check Docker version
-      run: docker version
-    
-    - name: Check Docker info
-      run: docker info
-
+        
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
