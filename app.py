@@ -9,7 +9,7 @@ def root():
     return jsonify({
         "service": "Joke Service",
         "version": "1.0.0",
-        "description": "A RESTful API service that provides jokes",
+        "description": "Welcome! To a RESTful API service that provides jokes",
         "documentation": "/api",
        "health": "/health"
     })
